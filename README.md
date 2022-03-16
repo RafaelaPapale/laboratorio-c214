@@ -1,2 +1,1 @@
-# laboratorio-c214
-Códigos utilizados na monitoria do laboratório de C214 (Engenharia de Software)
+<h1 align="center">Exercícios C214</h1>
