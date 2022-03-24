@@ -1,5 +1,5 @@
 const Users = require('../application/users_service');
-const Utils = require('../application/utils/utils');
+const Utils = require('../utils/utils');
 
 const route = '/users';
 
