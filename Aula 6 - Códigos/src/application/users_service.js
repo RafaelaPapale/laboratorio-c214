@@ -40,10 +40,54 @@ const Users = {
 
             const response = await UsersRepository.update(data);
 
-            if (response === null) {
+            if (response === []) {
                 const result = Constants.ErrorNotFound;
                 return result;
             }
+            return response;
+        } catch (error) {
+            return error;
+        }
+    },
+
+    async delete(data) {
+        try {
+            const validation = validate.validate(data, Constraints.deleteBy);
+            if (validation) {
+                const response = Constants.ErrorValidation;
+                response.message = validation;
+                return response;
+            }
+
+            const response = await UsersRepository.delete(data);
+
+            return response;
+        } catch (error) {
+            return error;
+        }
+    },
+
+    async listByEmail(data) {
+        try {
+            const validation = validate.validate(data, Constraints.get);
+            if (validation) {
+                const response = Constants.ErrorValidation;
+                response.message = validation;
+                return response;
+            }
+
+            const response = await UsersRepository.getByEmail(data);
+
+            return response;
+        } catch (error) {
+            return error;
+        }
+    },
+
+    async list() {
+        try {
+            const response = await UsersRepository.list();
+
             return response;
         } catch (error) {
             return error;

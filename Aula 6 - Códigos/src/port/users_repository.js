@@ -19,12 +19,39 @@ const UsersRepository = {
             const options = { new: true };
             const filter = { email: data.email };
             const result = await UsersModel.findOneAndUpdate(filter, update, options).exec();
-            if(result === null) return []
+            if (result === null) return []
             return result.toObject();
         } catch (e) {
             return e;
         }
     },
+
+    async delete(data) {
+        try {
+            const result = await UsersModel.deleteOne({ email: data.email }).exec();
+            return result.deletedCount;
+        } catch (error) {
+            return error;
+        }
+    },
+
+    async list() {
+        try {
+            const result = await UsersModel.find().exec();
+            return result;
+        } catch (error) {
+            return error;
+        }
+    },
+
+    async getByEmail(data) {
+        try {
+          const result = await UsersModel.findOne({ email: data.email }).exec();
+          return result;
+        } catch (e) {
+          return e;
+        }
+      },
 };
 
 module.exports = UsersRepository;
